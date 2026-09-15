@@ -1,0 +1,9 @@
+POST http://localhost:2500/racunalniki
+Content-Type: application/json
+
+{
+  "znamka": "Dell",
+  "model": "OptiPlex",
+  "cena": 450,
+  "datum_nakupa": "2026-09-08"
+}
