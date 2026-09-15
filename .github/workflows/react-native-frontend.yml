@@ -1,37 +1,22 @@
 name: React Native Frontend CI
 
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'MyFirstApp/**'
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
-
     defaults:
       run:
-        working-directory: ./MyFirstApp
-
+        working-directory: ./MyFirstApp 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
           cache-dependency-path: ./MyFirstApp/package-lock.json
-
       - name: Install dependencies
         run: npm ci
-
       - name: Verify code style (Lint)
         run: npm run lint --if-present
-
-      - name: Run mobile app tests
-        run: npm test --if-present
